@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Tasky</title>
 
-  <!-- Stylish font from Google Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- Font Awesome for interactive check icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <style>
@@ -123,7 +123,6 @@
       color: #a80000;
     }
 
-    /* Custom circular checkbox */
     .custom-checkbox {
       appearance: none;
       width: 24px;
@@ -150,6 +149,58 @@
       position: absolute;
       top: 3px;
       left: 5px;
+    }
+
+    /* Responsive Design for Mobile View */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .input-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      select,
+      button {
+        width: 90%;
+        max-width: 400px;
+      }
+
+      .task {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+      }
+
+      .task-left {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .task-right {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 5px;
+      }
+
+      .title {
+        font-size: 1rem;
+      }
+
+      .deadline {
+        font-size: 0.9rem;
+      }
+
+      .tag {
+        font-size: 0.8rem;
+        padding: 5px 12px;
+      }
     }
   </style>
 </head>
@@ -238,13 +289,11 @@
     }
 
     function toggleDone(index) {
-      // Toggle the "done" status of the task
       tasks[index].done = !tasks[index].done;
-      
-      // Move the task to the bottom if it's marked as done
+
       if (tasks[index].done) {
-        const completedTask = tasks.splice(index, 1)[0]; // Remove the task from the list
-        tasks.push(completedTask); // Add it back to the end of the list
+        const completedTask = tasks.splice(index, 1)[0];
+        tasks.push(completedTask);
       }
 
       renderTasks();
